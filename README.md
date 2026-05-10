@@ -80,7 +80,85 @@ options (optional):
   --audio_context_len AUDIO_CONTEXT_LEN
                         (default: 1)
                         
-  --use_gated_fusion    use gated fusion network for rob_wavlm_cme_context model
+  --use_gated_fusion    Use gated fusion network for rob_wavlm_cme_context model
   
-  --gpu_ids GPU_IDS     gpu ids for multi-gpu training, e.g., "0,1,2,3" or "0" for single gpu (default: 0)
+  --gpu_ids GPU_IDS     GPU ids for multi-gpu training, e.g., "0,1,2,3" or "0" for single gpu (default: 0)
+```
+
+## Save waveform images for audio clips
+
+You can generate a full waveform or extract and save the waveform of a specific word spoken in the audio.
+
+```
+python save_waveform.py
+
+  --video_id VIDEO_ID
+
+  --clip_id CLIP_ID
+
+  --dataset DATASET    Dataset name (mosi, mosei)
+
+  --word TARGET_WORD    (default: None)
+```
+
+## t-SNE Feature Distribution Visualization for CMU-MOSI or CMU-MOSEI
+
+Generate t-SNE visualizations comparing feature representations across three processing methods: raw features, concatenation fusion, and CAGF (CME + Gated Fusion).
+
+Creates a 3-subplot figure showing how different fusion strategies affect feature distributions.
+
+```
+python tsne_visualization.py
+
+  --checkpoint CHECKPOINT         Path to the CAGF model checkpoint
+                                  Example: checkpoint/cagf_model.pth
+                                  
+  --checkpoint_cc CHECKPOINT_CC   Path to the Concatenation fusion model checkpoint
+                                  Example: checkpoint/cc_model.pth
+
+  --dataset DATASET               Dataset name (mosi, mosei)
+                                  
+  --seed SEED                     Random seed for reproducibility (default: 1)
+  
+  --batch_size BATCH_SIZE         Batch size for feature extraction (default: 8)
+  
+  --text_context_len LENGTH       Length of text context window (default: 5)
+  
+  --audio_context_len LENGTH      Length of audio context window (default: 5)
+  
+  --perplexity PERPLEXITY         t-SNE perplexity parameter (default: 30)
+                                  Recommended range: 20-50
+                                  
+  --output OUTPUT                 Output image path (default: tsne_mosi.png)
+```
+
+
+## t-SNE Feature Distribution Visualization for CH-SIMS
+
+Generate t-SNE visualizations comparing feature representations across three processing methods for the CH-SIMS dataset: raw features, concatenation fusion, and CME (Cross-Modal Encoder). 
+
+Creates a 3-subplot figure showing how different fusion strategies affect feature distributions in Chinese multimodal sentiment analysis.
+
+```
+python tsne_visualization_sims.py
+
+  --checkpoint CHECKPOINT         Path to the CME (Cross-Modal Encoder) checkpoint
+                                  Example: checkpoint/cme_sims.pth
+                                  
+  --checkpoint_cc CHECKPOINT_CC   Path to the Concatenation (CC) fusion model checkpoint
+                                  Example: checkpoint/cc_sims.pth
+
+  --seed SEED                     Random seed for reproducibility (default: 1)
+  
+  --batch_size BATCH_SIZE         Batch size for feature extraction (default: 8)
+  
+  --num_hidden_layers NUM_HIDDEN_LAYERS
+                                  Number of CME cross-modal encoder layers (default: 5)
+                                  Should match the training configuration
+                                  
+  --perplexity PERPLEXITY         t-SNE perplexity parameter (default: 30)
+                                  Recommended range: 20-50
+                                  
+  --output OUTPUT                 Output image path (default: tsne_sims.png)
+
 ```
