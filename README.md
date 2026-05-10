@@ -105,8 +105,6 @@ python save_waveform.py
 
 Generate t-SNE visualizations comparing feature representations across three processing methods: raw features, concatenation fusion, and CAGF (CME + Gated Fusion).
 
-Creates a 3-subplot figure showing how different fusion strategies affect feature distributions.
-
 ```
 python tsne_visualization.py
 
@@ -135,9 +133,7 @@ python tsne_visualization.py
 
 ## t-SNE Feature Distribution Visualization for CH-SIMS
 
-Generate t-SNE visualizations comparing feature representations across three processing methods for the CH-SIMS dataset: raw features, concatenation fusion, and CME (Cross-Modal Encoder). 
-
-Creates a 3-subplot figure showing how different fusion strategies affect feature distributions in Chinese multimodal sentiment analysis.
+Generate t-SNE visualizations comparing feature representations across three processing methods for the CH-SIMS dataset: raw features, concatenation fusion, and CME. 
 
 ```
 python tsne_visualization_sims.py
